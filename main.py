@@ -44,8 +44,16 @@ def save_database(database):
     with open(DB_PATH, "w") as f:
         json.dump(database, f, indent=4)
 
+def has_hidden_items(directory):
+    for root, dir, files in os.walk(directory):
+        for name in dir + files:
+            if name.startswith('.'):
+                return True
+    return False
 
-def scan_directory(directory, hashes_db):
+
+
+def scan_directory(directory, hashes_db, include_hidden):
 
     current_files = set()
 
@@ -53,30 +61,32 @@ def scan_directory(directory, hashes_db):
     new_files = {}
     modified_files = {}
 
-    for filename in sorted(os.listdir(directory)):
+    for root, dirs, files in os.walk(directory):
 
-        file_path = os.path.join(directory, filename)
+        if not include_hidden:
+            dirs[:] = [d for d in dirs if not d.startswith('.')]
+            files = [f for f in files if not f.startswith('.')]
 
-        if not os.path.isfile(file_path):
-            continue
+        for filename in sorted(files):
 
-        current_files.add(filename)
+            file_path = os.path.join(root, filename)
 
-        current_hash = calculate_hash(file_path)
+            relative_path = os.path.relpath(file_path, directory)
 
-        stored_info = hashes_db.get(filename)
+            current_files.add(relative_path)
 
-        if stored_info is None:
+            current_hash = calculate_hash(file_path)
 
-            new_files[filename] = current_hash
+            stored_info = hashes_db.get(relative_path)
 
-        elif stored_info["hash"] == current_hash:
+            if stored_info is None:
+                new_files[relative_path] = current_hash
 
-            unchanged_files.append(filename)
+            elif stored_info["hash"] == current_hash:
+                unchanged_files.append(relative_path)
 
-        else:
-
-            modified_files[filename] = current_hash
+            else:
+                modified_files[relative_path] = current_hash
 
     deleted_files = [
         filename
@@ -145,10 +155,16 @@ def main():
     print("\n================== PyFIM ==================\n")
 
     directory = input("Enter directory path: ").strip()
+    include_hidden = False
 
     if not os.path.isdir(directory):
         print("\nDirectory does not exist.")
         return
+
+    if has_hidden_items(directory):
+            choice = input("Hidden files/folders detected. Include them in the scan? (Y/N): ").strip().upper()
+            if choice == "Y":
+                include_hidden = True
 
     print(f"\nScanning: {directory}\n")
 
@@ -156,7 +172,8 @@ def main():
 
     unchanged, new, modified, deleted, current_files = scan_directory(
         directory,
-        hashes_db
+        hashes_db,
+        include_hidden
     )
 
     print_report(

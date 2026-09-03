@@ -1,22 +1,14 @@
 {
     "hashes.json": {
-        "hash": "b8d69615749ad9721b09e2bcaca1ff22a1dd6c8cebb07ecf6e60be627b67fe20",
-        "algorithm": "SHA-256"
-    },
-    "index.html": {
-        "hash": "d7a04138590f81b99ac0370ba354bc3bd871d5ce4cd9c8fd9ba9496b9073262f",
+        "hash": "54961799b3211db30e6be2fd756866b6b3c200b21f987a2525a5268ad5dff554",
         "algorithm": "SHA-256"
     },
     "main.py": {
-        "hash": "4e41380919a8551b493fd091f01ce3725c5d9b829e48663ab758d7ecaa854088",
+        "hash": "c0b3798b5bc78ab55d6597832e1e7108f9890ee58a28cfee272d472bcce35b51",
         "algorithm": "SHA-256"
     },
-    "style.css": {
-        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "algorithm": "SHA-256"
-    },
-    "test.txt": {
-        "hash": "52a910dee78ebf4d34ec3c625ea24d6b590eb4c2f0a52ec2a3c1041b2558aaab",
+    "README.md": {
+        "hash": "3cf7b0353ca9b1df990931be08fd850f4fdec97e8f73eaff6fed75edb08e2f21",
         "algorithm": "SHA-256"
     }
 }
