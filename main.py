@@ -130,7 +130,7 @@ def print_report(unchanged, new, modified, deleted, total):
         print(f"- {file}")
 
 
-def update_database(hashes_db, new, modified, deleted):
+def update_database(database, directory, hashes_db, new, modified, deleted):
 
     for filename, file_hash in new.items():
         hashes_db[filename] = {
@@ -147,7 +147,8 @@ def update_database(hashes_db, new, modified, deleted):
     for filename in deleted:
         del hashes_db[filename]
 
-    save_database(hashes_db)
+    database[directory] = hashes_db
+    save_database(database)
 
 
 def main():
@@ -168,7 +169,8 @@ def main():
 
     print(f"\nScanning: {directory}\n")
 
-    hashes_db = load_database()
+    database = load_database()
+    hashes_db = database.get(directory, {})
 
     unchanged, new, modified, deleted, current_files = scan_directory(
         directory,
@@ -189,6 +191,8 @@ def main():
     if choice == "Y":
 
         update_database(
+            database,
+            directory,
             hashes_db,
             new,
             modified,

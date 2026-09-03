@@ -1,14 +1,22 @@
 {
-    "hashes.json": {
-        "hash": "54961799b3211db30e6be2fd756866b6b3c200b21f987a2525a5268ad5dff554",
-        "algorithm": "SHA-256"
+    ".": {
+        "README.md": {
+            "hash": "04b1ead8238b48c4fa59d1f17aa70699fda5121a9957c5907c4f69def441f1b4",
+            "algorithm": "SHA-256"
+        },
+        "hashes.json": {
+            "hash": "5a4261987dbf0b2ca2d966c1ee12446c8d06f55f4d0021926be25d6a3c89c0fc",
+            "algorithm": "SHA-256"
+        },
+        "main.py": {
+            "hash": "23d27831df07ef3b48c4efb64cfec1678e59e10b4bdac3ffdc3d59c4eb4d1625",
+            "algorithm": "SHA-256"
+        }
     },
-    "main.py": {
-        "hash": "c0b3798b5bc78ab55d6597832e1e7108f9890ee58a28cfee272d472bcce35b51",
-        "algorithm": "SHA-256"
-    },
-    "README.md": {
-        "hash": "3cf7b0353ca9b1df990931be08fd850f4fdec97e8f73eaff6fed75edb08e2f21",
-        "algorithm": "SHA-256"
+    "D:\\hussamuddin\\CyberSecurity\\google course": {
+        "Incident handler's journal .docx": {
+            "hash": "9542524d6a11f9c5c72a94b7ee936409297827dd3e2dcdd267399a0a4f475171",
+            "algorithm": "SHA-256"
+        }
     }
 }
