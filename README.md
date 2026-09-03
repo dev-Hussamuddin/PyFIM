@@ -56,6 +56,8 @@ Example:
 Enter directory path:
 /home/kali/Documents
 
+Hidden files/folders detected. Include them in the scan? (Y/N): N
+
 Scanning...
 
 ================ Scan Report ================
